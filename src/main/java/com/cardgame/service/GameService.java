@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class GameService {
 
-    private ConcurrentHashMap<String, Room> roomMap;
+    private ConcurrentHashMap<String, Room> roomMap = new ConcurrentHashMap<>();
 
     public Room createGame(User user) {
         Room initialRoom = new Room(user);

@@ -68,6 +68,9 @@ public class WebSocketAuthInterceptor implements ChannelInterceptor {
                         // Set the authentication in the SecurityContext
                         SecurityContextHolder.getContext().setAuthentication(auth);
                         accessor.setUser(auth); // Attach authenticated user to WebSocket session
+                        if (accessor.getSessionAttributes() != null) {
+                            accessor.getSessionAttributes().put("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
+                        }
                     }
                 } catch (NumberFormatException e) {
                     // Handle invalid userId format (optional: ignore silently)
