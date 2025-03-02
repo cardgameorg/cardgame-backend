@@ -1,22 +1,17 @@
 package com.cardgame.service;
 
-import com.cardgame.entity.User;
+import com.cardgame.entity.database.User;
 import com.cardgame.repository.UserRepository;
 import com.cardgame.request.CreateUserDto;
 import com.cardgame.request.LoginDto;
 import com.cardgame.response.AuthResponse;
 import com.cardgame.utils.UserUtils;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
@@ -84,7 +79,7 @@ public class AuthenticationService {
     }
 
     public AuthResponse authenticate() {
-        User user = UserUtils.currentUser();
+        User user = UserUtils.getCurrentUser();
         if (user == null) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,"please log in");
         return AuthResponse.of(user);
     }

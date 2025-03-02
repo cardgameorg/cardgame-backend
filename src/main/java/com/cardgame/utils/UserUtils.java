@@ -1,13 +1,21 @@
 package com.cardgame.utils;
 
-import com.cardgame.entity.User;
+import com.cardgame.entity.database.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
 @Component
 public class UserUtils {
 
-    public static User currentUser () {
-        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public static User getCurrentUser() throws ResponseStatusException {
+        try {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            return user;
+        } catch (ClassCastException exception) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "not signed in");
+        }
+
     }
 }

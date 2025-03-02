@@ -1,7 +1,6 @@
 package com.cardgame.response;
 
-import com.cardgame.entity.User;
-import jakarta.persistence.Column;
+import com.cardgame.entity.database.User;
 import lombok.Data;
 
 @Data
@@ -13,6 +12,7 @@ public class AuthResponse {
     private String profileImg;
 
     private Integer wins;
+
 
     protected AuthResponse (User user) {
         this.id = user.getId();

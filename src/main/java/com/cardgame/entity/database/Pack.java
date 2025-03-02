@@ -1,4 +1,4 @@
-package com.cardgame.entity;
+package com.cardgame.entity.database;
 
 import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
 import com.cardgame.enums.PackType;

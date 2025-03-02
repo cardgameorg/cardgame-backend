@@ -1,12 +1,9 @@
-package com.cardgame.entity;
+package com.cardgame.entity.database;
 
 import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
 import com.cardgame.enums.UserRole;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -18,6 +15,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
+@ToString(exclude = {"packs"})
 @Entity
 @Table(name = "app_user")
 public class User implements UserDetails {

@@ -1,7 +1,7 @@
 package com.cardgame.service;
 
 
-import com.cardgame.entity.User;
+import com.cardgame.entity.database.User;
 import io.jsonwebtoken.io.Decoders;
 import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Claims;

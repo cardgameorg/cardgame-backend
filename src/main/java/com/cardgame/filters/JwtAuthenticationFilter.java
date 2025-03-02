@@ -1,5 +1,5 @@
 package com.cardgame.filters;
-import com.cardgame.entity.User;
+import com.cardgame.entity.database.User;
 import com.cardgame.repository.UserRepository;
 import com.cardgame.service.AuthenticationService;
 import com.cardgame.service.JwtService;
@@ -13,7 +13,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;

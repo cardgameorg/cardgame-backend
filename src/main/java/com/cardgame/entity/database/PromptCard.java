@@ -1,17 +1,26 @@
-package com.cardgame.entity;
+package com.cardgame.entity.database;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "app_play_cards")
-public class PlayCard {
+@Table(name = "app_prompt_cards")
+public class PromptCard {
     @Id
     @GeneratedValue
     private Long id;
 
-    @NotNull
-    private String text;
+
+    private String text1;
+
+    //PROMPT SPACE, NEM KELL KÜLÖN FIELD
+
+    private String text2;
+
+    private boolean extraPromptSpace; // plusz prompt space :)
+
+    private String text3;
+
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)

@@ -1,13 +1,11 @@
 package com.cardgame.service;
 
-import com.cardgame.entity.User;
 import com.cardgame.repository.UserRepository;
 import com.cardgame.response.AuthResponse;
 import com.cardgame.utils.UserUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -23,7 +21,7 @@ public class UserService {
     }
 
     public AuthResponse edit(HttpServletRequest request) {
-        return AuthResponse.of(UserUtils.currentUser());
+        return AuthResponse.of(UserUtils.getCurrentUser());
     }
 
 

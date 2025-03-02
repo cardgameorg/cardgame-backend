@@ -40,12 +40,6 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
-//                .logout((logout) -> logout
-//                        .deleteCookies("token","refreshtoken")
-//                        .logoutUrl("api/v1/auth/logout")
-//                        .permitAll()
-//                )
-
                 .logout((logout) -> logout
                         .addLogoutHandler(clearSiteData)
                         .logoutUrl("api/v1/auth/logout")

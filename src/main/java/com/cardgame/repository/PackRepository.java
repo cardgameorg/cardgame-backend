@@ -1,6 +1,6 @@
 package com.cardgame.repository;
 
-import com.cardgame.entity.Pack;
+import com.cardgame.entity.database.Pack;
 import io.lettuce.core.dynamic.annotation.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

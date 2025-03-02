@@ -4,6 +4,7 @@ import com.cardgame.request.CreateUserDto;
 import com.cardgame.request.LoginDto;
 import com.cardgame.response.AuthResponse;
 import com.cardgame.service.AuthenticationService;
+import com.cardgame.utils.UserUtils;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -36,4 +37,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthResponse> authenticate() {
         return ResponseEntity.ok(authenticationService.authenticate());
     }
+
+    @PostMapping("/logout")
+    public String logout() {return "cleared all data";}
 }
