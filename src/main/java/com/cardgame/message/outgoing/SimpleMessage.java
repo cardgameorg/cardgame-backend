@@ -1,4 +1,4 @@
-package com.cardgame.message;
+package com.cardgame.message.outgoing;
 
 import lombok.Data;
 

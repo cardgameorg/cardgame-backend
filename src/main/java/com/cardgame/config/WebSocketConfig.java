@@ -1,5 +1,6 @@
 package com.cardgame.config;
 
+import com.cardgame.filters.CustomWebSocketHandler;
 import com.cardgame.filters.WebSocketAuthInterceptor;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +12,7 @@ import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.WebSocketHandler;
-import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
-import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
-import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
+import org.springframework.web.socket.config.annotation.*;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
 import java.util.Map;
@@ -21,13 +20,14 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer, WebSocketConfigurer {
     private final WebSocketAuthInterceptor webSocketAuthInterceptor;
+    private final CustomWebSocketHandler webSocketHandler;
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // Register the STOMP endpoint that clients can connect to (sockJS is enabled)
         registry.addEndpoint("/ws")
-                .setAllowedOrigins("http://localhost:5173")
+                .setAllowedOriginPatterns("*")
                 .addInterceptors(new HttpSessionHandshakeInterceptor() {
                     @Override
                     public boolean beforeHandshake(
@@ -58,5 +58,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void configureClientInboundChannel(ChannelRegistration registration) {
         // This is where the WebSocketAuthInterceptor is registered
         registration.interceptors(webSocketAuthInterceptor);
+    }
+
+    @Override
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+        registry.addHandler(webSocketHandler, "/ws").setAllowedOrigins("*");
     }
 }

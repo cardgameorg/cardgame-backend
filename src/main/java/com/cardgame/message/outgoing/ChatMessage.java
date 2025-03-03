@@ -1,4 +1,4 @@
-package com.cardgame.message;
+package com.cardgame.message.outgoing;
 
 import com.cardgame.entity.database.User;
 import com.cardgame.response.UserResponse;
